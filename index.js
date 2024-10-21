@@ -25,6 +25,14 @@ app.get('/items/:id',(req,res)=>{
     res.json(item);
 });
 
+app.put('/items/:id',(req,res)=>{
+    const item =items.find(i => i.id === parseInt(req.params.id));
+    if (!item)
+        return res.status(404).json({ error:'Item not found'});
+    item.name = req.body.name;
+    res.json(item);
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
