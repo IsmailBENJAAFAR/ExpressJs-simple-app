@@ -5,15 +5,18 @@ const PORT = 3000;
 app.use(express.json());
 let items = [];
 
-app.post('/items', (req, res) => {
+app.post('/items',(req,res)=>{
     const newItem = {
-        id: items.length + 1,
-        name: req.body.name
+        id:items.length + 1,
+        name:req.body.name
     };
     items.push(newItem);
     res.status(201).json(newItem);
 });
 
+app.get('/items',(req,res)=>{
+    res.json(items);
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
