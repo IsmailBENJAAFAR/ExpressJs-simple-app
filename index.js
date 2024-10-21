@@ -33,6 +33,14 @@ app.put('/items/:id',(req,res)=>{
     res.json(item);
 });
 
+app.delete('/items/:id',(req,res)=>{
+    const index= items.findIndex(i=> i.id ===parseInt(req.params.id));
+    if (index === -1)
+        return res.status(404).json({error:'Item not found' });
+    items.splice(index, 1);
+    res.status(204).send();
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
